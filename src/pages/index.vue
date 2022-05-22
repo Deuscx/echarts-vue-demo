@@ -13,21 +13,26 @@ d3.csv('./SCADA_data.csv', (d: any) => {
   const {
     Time,
     'WEC: ava. windspeed': avaWindspeed,
-    'WEC : max. windspeed': maxWindspeed,
-    'WEC : min. windspeed': minWindspeed,
+    'WEC: ava. Rotation': avaRotation,
+    'WEC: ava. Power': avaPower,
+    'CS101 : Rotor temp. 1': rotorTemp,
   } = d
   return {
     avaWindspeed,
-    maxWindspeed,
-    minWindspeed,
+    avaRotation,
+    avaPower,
+    rotorTemp,
     Time,
   }
 }).then((data) => {
+  console.log('🚀 ~ file: index.vue ~ line 28 ~ d3.csv ~ data', data)
+
   const dimensions = [
     'Time',
     { name: 'avaWindspeed', displayName: '平均风速' },
-    { name: 'maxWindspeed', displayName: '最大风速' },
-    { name: 'minWindspeed', displayName: '最小风速' },
+    { name: 'avaRotation', displayName: '平均转速' },
+    { name: 'avaPower', displayName: '平均功率' },
+    { name: 'rotorTemp', displayName: '转子温度' },
   ]
   data.dimensions = dimensions
   scandata.value = data
@@ -56,7 +61,7 @@ d3.csv('./SCADA_data.csv', (d: any) => {
       />
     </n-collapse-item>
     <n-collapse-item
-      title="黄金"
+      title="visualMap"
       name="3"
     >
       <div>真棒</div>

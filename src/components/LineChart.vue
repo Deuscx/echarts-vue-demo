@@ -38,7 +38,7 @@ const option = computed<EChartsOption>(() => {
     },
     xAxis: { type: 'category' },
     yAxis: {},
-    series: [{ type: 'line' }, { type: 'bar' }, { type: 'bar' }],
+    series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'line' }],
   }
 })
 

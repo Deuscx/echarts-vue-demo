@@ -4,6 +4,13 @@ const props = defineProps({
 })
 
 const startIndex = ref(0)
+const speed = ref(1)
+const interval = computed(() => 2000 / speed.value)
+const totalLen = computed(() => {
+  if (!props.data || !props.data.length)
+    return 0
+  return Math.floor((startIndex.value / props.data.length) * 100)
+})
 const source = computed(() => {
   if (props.data)
     return props.data.slice(startIndex.value, startIndex.value + 10)
@@ -40,27 +47,54 @@ const option = computed(() => {
       dimensions: props.data.dimensions,
     },
     series: [
-      //   {
-      //     name: "Fake Data",
-      //     type: "line",
-      //     showSymbol: false,
-      //     data,
-      //   },
+      { type: 'bar' },
+      { type: 'bar' },
+      { type: 'bar' },
       { type: 'line' },
-      { type: 'bar' },
-      { type: 'bar' },
     ],
   }
 })
 
 useIntervalFn(() => {
   startIndex.value += 1
-}, 2000)
+}, interval)
 
-console.log('🚀', props.data)
+function changeTime(e) {
+  startIndex.value = Math.floor(((props.data.length - 1) / 100) * e)
+}
 </script>
 
 <template>
+  <section>
+    <div
+      flex
+      items-center
+      mb-1rem
+    >
+      <label w5vw>日期</label>
+      <n-slider
+        :step="1"
+        @update:value="changeTime"
+      />
+      <div w10vw>
+        {{ data && data[startIndex] && data[startIndex].Time }}
+      </div>
+    </div>
+    <div
+      flex
+      items-center
+      mb-1rem
+    >
+      <label w5vw>速度</label>
+      <n-input-number
+        v-model:value="speed"
+        min="1"
+        max="4"
+        clearable
+      />
+    </div>
+  </section>
+
   <v-chart
     v-if="option"
     w-full
