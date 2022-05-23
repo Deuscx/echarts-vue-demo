@@ -8,6 +8,7 @@ declare module '@vue/runtime-core' {
     DynamicLineChart: typeof import('./src/components/DynamicLineChart.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     LineChart: typeof import('./src/components/LineChart.vue')['default']
+    MonitorChart: typeof import('./src/components/MonitorChart.vue')['default']
     NCollapse: typeof import('naive-ui')['NCollapse']
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
     NDatePicker: typeof import('naive-ui')['NDatePicker']

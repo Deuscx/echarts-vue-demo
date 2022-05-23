@@ -25,8 +25,6 @@ d3.csv('./SCADA_data.csv', (d: any) => {
     Time,
   }
 }).then((data) => {
-  console.log('🚀 ~ file: index.vue ~ line 28 ~ d3.csv ~ data', data)
-
   const dimensions = [
     'Time',
     { name: 'avaWindspeed', displayName: '平均风速' },
@@ -36,14 +34,13 @@ d3.csv('./SCADA_data.csv', (d: any) => {
   ]
   data.dimensions = dimensions
   scandata.value = data
-  console.log(scandata)
 })
 </script>
 
 <template>
   <n-collapse :default-expanded-names="['1', '2', '3']">
     <n-collapse-item
-      title="折线图"
+      title="风机特征"
       name="1"
     >
       <line-chart
@@ -52,7 +49,7 @@ d3.csv('./SCADA_data.csv', (d: any) => {
       />
     </n-collapse-item>
     <n-collapse-item
-      title="动态折线图"
+      title="风机特征"
       name="2"
     >
       <dynamic-line-chart
@@ -61,10 +58,10 @@ d3.csv('./SCADA_data.csv', (d: any) => {
       />
     </n-collapse-item>
     <n-collapse-item
-      title="visualMap"
+      title="监控图"
       name="3"
     >
-      <div>真棒</div>
+      <monitor-chart />
     </n-collapse-item>
   </n-collapse>
 </template>

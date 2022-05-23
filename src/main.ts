@@ -25,6 +25,9 @@ import {
   ToolboxComponent,
   TooltipComponent,
   TransformComponent,
+  VisualMapComponent,
+  VisualMapContinuousComponent,
+  VisualMapPiecewiseComponent,
 } from 'echarts/components'
 import App from './App.vue'
 
@@ -40,6 +43,9 @@ use([
   TransformComponent,
   ToolboxComponent,
   TitleComponent,
+  VisualMapComponent,
+  VisualMapPiecewiseComponent,
+  VisualMapContinuousComponent,
 ])
 
 const app = createApp(App)

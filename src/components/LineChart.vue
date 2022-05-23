@@ -41,8 +41,6 @@ const option = computed<EChartsOption>(() => {
     series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'line' }],
   }
 })
-
-console.log('😀 option')
 </script>
 
 <template>
