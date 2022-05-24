@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DynamicLineChart: typeof import('./src/components/DynamicLineChart.vue')['default']
+    DynamicMonitorChart: typeof import('./src/components/DynamicMonitorChart.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     LineChart: typeof import('./src/components/LineChart.vue')['default']
     MonitorChart: typeof import('./src/components/MonitorChart.vue')['default']

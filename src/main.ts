@@ -21,6 +21,7 @@ import {
   DatasetComponent,
   GridComponent,
   LegendComponent,
+  MarkLineComponent,
   TitleComponent,
   ToolboxComponent,
   TooltipComponent,
@@ -46,6 +47,7 @@ use([
   VisualMapComponent,
   VisualMapPiecewiseComponent,
   VisualMapContinuousComponent,
+  MarkLineComponent,
 ])
 
 const app = createApp(App)
