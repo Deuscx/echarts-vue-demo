@@ -5,6 +5,8 @@ const props = defineProps({
   data: ref<any>(),
 })
 
+const seriesValue = ref(['line', 'line', 'line', 'line'])
+const series = computed(() => seriesValue.value.map(type => ({ type })))
 const range = ref([1388851800000, 1441296000000])
 const option = computed<EChartsOption>(() => {
   if (!props.data || !props.data.length)
@@ -28,19 +30,29 @@ const option = computed<EChartsOption>(() => {
     },
     tooltip: {},
     dataset: {
-      source: props.data
-        .filter(
-          d =>
-            +new Date(d.Time) > range.value[0]
-            && +new Date(d.Time) < range.value[1],
-        ),
+      source: props.data.filter(
+        d =>
+          +new Date(d.Time) > range.value[0]
+          && +new Date(d.Time) < range.value[1],
+      ),
       dimensions: props.data.dimensions,
     },
     xAxis: { type: 'category' },
     yAxis: {},
-    series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'line' }],
+    series: series.value,
   }
 })
+
+const seriesType = [
+  {
+    label: '柱状',
+    value: 'bar',
+  },
+  {
+    label: '线状',
+    value: 'line',
+  },
+]
 </script>
 
 <template>
@@ -51,6 +63,18 @@ const option = computed<EChartsOption>(() => {
     :default-calendar-start-time="1388851800000"
     :default-calendar-end-time="1441296000000"
   />
+  <div
+    flex
+    justify-center
+  >
+    <n-select
+      v-for="index in 4"
+      :key="index"
+      v-model:value="seriesValue[index - 1]"
+      class="w20"
+      :options="seriesType"
+    />
+  </div>
   <v-chart
     v-if="option"
     w-full

@@ -16,7 +16,8 @@ const source = computed(() => {
     return props.data.slice(startIndex.value, startIndex.value + 10)
   else return []
 })
-
+const seriesValue = ref(['line', 'line', 'line', 'line'])
+const series = computed(() => seriesValue.value.map(type => ({ type })))
 const option = computed(() => {
   if (!props.data || !props.data.length)
     return false
@@ -46,12 +47,7 @@ const option = computed(() => {
       source: source.value,
       dimensions: props.data.dimensions,
     },
-    series: [
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'bar' },
-      { type: 'line' },
-    ],
+    series: series.value,
   }
 })
 
@@ -62,6 +58,17 @@ useIntervalFn(() => {
 function changeTime(e) {
   startIndex.value = Math.floor(((props.data.length - 1) / 100) * e)
 }
+
+const seriesType = [
+  {
+    label: '柱状',
+    value: 'bar',
+  },
+  {
+    label: '线状',
+    value: 'line',
+  },
+]
 </script>
 
 <template>
@@ -94,7 +101,19 @@ function changeTime(e) {
       />
     </div>
   </section>
-
+  <div
+    flex
+    justify-center
+  >
+    <n-select
+      v-for="index in 4"
+      :key="index"
+      v-model:value="seriesValue[index - 1]"
+      class="w20"
+      :options="seriesType"
+    />
+  </div>
+  {{ value }}
   <v-chart
     v-if="option"
     w-full

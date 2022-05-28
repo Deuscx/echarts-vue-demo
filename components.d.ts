@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
+    NSelect: typeof import('naive-ui')['NSelect']
     NSlider: typeof import('naive-ui')['NSlider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
