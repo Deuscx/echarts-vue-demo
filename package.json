@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
     "@vueuse/core": "^8.4.2",
     "d3": "^7.4.4",
     "dayjs": "^1.11.2",

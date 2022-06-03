@@ -38,7 +38,7 @@ d3.csv('./SCADA_data.csv', (d: any) => {
 </script>
 
 <template>
-  <n-collapse :default-expanded-names="['1', '2', '3', '4']">
+  <!-- <n-collapse :default-expanded-names="['1', '2', '3', '4']">
     <n-collapse-item
       title="风机特征"
       name="1"
@@ -69,5 +69,5 @@ d3.csv('./SCADA_data.csv', (d: any) => {
     >
       <dynamic-monitor-chart />
     </n-collapse-item>
-  </n-collapse>
+  </n-collapse> -->
 </template>
