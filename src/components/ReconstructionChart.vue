@@ -14,6 +14,7 @@ const source = computed(() => {
     return monitorData.value.slice(startIndex.value, startIndex.value + 50)
   else return []
 })
+console.log('🚀 ~ file: ReconstructionChart.vue ~ line 17 ~ source ~ source', source)
 const option = computed<EChartsOption>(() => {
   if (!monitorData.value || !monitorData.value.length)
     return false
@@ -25,43 +26,42 @@ const option = computed<EChartsOption>(() => {
       dimensions: monitorData.value.dimensions,
     },
     xAxis: { type: 'category' },
-    yAxis: { name: '指标', type: 'value' },
+    yAxis: { name: 'RES', type: 'value' },
     series: [
       {
         type: 'line',
         encode: {
           x: 'Time',
-          y: 'ָIndicator',
+          y: 'REs',
         },
         markLine: {
           lineStyle: {
             color: '#FD665F',
           },
-          precision: 6,
+          precision: 4,
           data: [
             {
-              yAxis: 0.002122,
+              yAxis: 0.004,
             },
           ],
         },
       },
     ],
     visualMap: {
-      //   type: 'piecewise',
       top: 50,
       right: 1,
       dimension: 1,
       precision: 6,
       pieces: [
         {
-          lte: 0.002121,
+          lte: 0.003999,
           color: 'green',
           label: '正常',
         },
         {
-          gt: 0.002122,
+          gt: 0.004,
           color: 'red',
-          label: '异常',
+          label: '故障',
         },
       ],
     },

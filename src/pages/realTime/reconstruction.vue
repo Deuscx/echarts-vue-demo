@@ -1,9 +1,8 @@
-<script lang="ts" setup>
-
+<script  lang="ts" setup>
 </script>
 
 <template>
-  重构误差
+  <reconstruction-chart />
 </template>
 
 <style lang="scss" scoped>
@@ -13,7 +12,6 @@
 {
   "meta": {
     "title": "重构误差"
-  },
-  "redirect": {name: "history-feature"}
+  }
 }
 </route>

@@ -1,30 +1,28 @@
 <script setup lang="ts">
-const props = defineProps({
-  data: ref<any>(),
-})
+import { scandata } from '~/composables/chartData'
 
 const startIndex = ref(0)
 const speed = ref(1)
 const interval = computed(() => 2000 / speed.value)
 const totalLen = computed(() => {
-  if (!props.data || !props.data.length)
+  if (!scandata.value || !scandata.value.length)
     return 0
-  return Math.floor((startIndex.value / props.data.length) * 100)
+  return Math.floor((startIndex.value / scandata.value.length) * 100)
 })
 const source = computed(() => {
-  if (props.data)
-    return props.data.slice(startIndex.value, startIndex.value + 10)
+  if (scandata.value)
+    return scandata.value.slice(startIndex.value, startIndex.value + 10)
   else return []
 })
 const seriesValue = ref(['line', 'line', 'line', 'line'])
 const series = computed(() => seriesValue.value.map(type => ({ type })))
 const option = computed(() => {
-  if (!props.data || !props.data.length)
+  if (!scandata.value || !scandata.value.length)
     return false
   return {
     legend: {},
     title: {
-      text: 'Dynamic Data & Time Axis',
+      text: '风机特征',
     },
     tooltip: {
       trigger: 'axis',
@@ -45,7 +43,7 @@ const option = computed(() => {
     // },
     dataset: {
       source: source.value,
-      dimensions: props.data.dimensions,
+      dimensions: scandata.value.dimensions,
     },
     series: series.value,
   }
@@ -56,7 +54,7 @@ useIntervalFn(() => {
 }, interval)
 
 function changeTime(e) {
-  startIndex.value = Math.floor(((props.data.length - 1) / 100) * e)
+  startIndex.value = Math.floor(((scandata.value.length - 1) / 100) * e)
 }
 
 const seriesType = [
@@ -84,7 +82,7 @@ const seriesType = [
         @update:value="changeTime"
       />
       <div w10vw>
-        {{ data && data[startIndex] && data[startIndex].Time }}
+        {{ scandata && scandata[startIndex] && scandata[startIndex].Time }}
       </div>
     </div>
     <div
@@ -113,7 +111,6 @@ const seriesType = [
       :options="seriesType"
     />
   </div>
-  {{ value }}
   <v-chart
     v-if="option"
     w-full

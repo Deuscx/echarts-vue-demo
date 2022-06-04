@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div />
+  <monitor-chart />
 </template>
 
 <style lang="scss" scoped>

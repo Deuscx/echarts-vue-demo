@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  风机特征
+  <dynamic-line-chart />
 </template>
 
 <style lang="scss" scoped>

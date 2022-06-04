@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  功率曲线
+  <dynamic-power-chart />
 </template>
 
 <style lang="scss" scoped>

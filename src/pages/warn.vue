@@ -1,9 +1,8 @@
-<script setup>
-
+<script lang="ts" setup>
 </script>
 
 <template>
-  EWMA 图
+  <dynamic-monitor-chart />
 </template>
 
 <style lang="scss" scoped>

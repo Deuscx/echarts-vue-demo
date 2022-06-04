@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts/types/dist/shared'
-import dayjs from 'dayjs'
-const props = defineProps({
-  data: ref<any>(),
-})
+import { scandata } from '~/composables/chartData'
 
 const seriesValue = ref(['line', 'line', 'line', 'line'])
 const series = computed(() => seriesValue.value.map(type => ({ type })))
 const range = ref([1388851800000, 1441296000000])
 const option = computed<EChartsOption>(() => {
-  if (!props.data || !props.data.length)
+  if (!scandata.value || !scandata.value.length)
     return false
   return {
     legend: {},
@@ -30,12 +27,12 @@ const option = computed<EChartsOption>(() => {
     },
     tooltip: {},
     dataset: {
-      source: props.data.filter(
+      source: scandata.value.filter(
         d =>
           +new Date(d.Time) > range.value[0]
           && +new Date(d.Time) < range.value[1],
       ),
-      dimensions: props.data.dimensions,
+      dimensions: scandata.value.dimensions,
     },
     xAxis: { type: 'category' },
     yAxis: {},

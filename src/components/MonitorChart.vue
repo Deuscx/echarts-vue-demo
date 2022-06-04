@@ -1,20 +1,5 @@
 <script setup lang="ts">
-import * as d3 from 'd3'
-import type { DSVParsedArray } from 'd3'
-import type { EChartsOption } from 'echarts/types/dist/shared'
-
-const monitorData = ref<DSVParsedArray>({ columns: 0, length: 0 })
-d3.csv('./monitor.csv').then((data) => {
-  console.log('🚀 ~ file: index.vue ~ line 28 ~ d3.csv ~ data', data)
-
-  const dimensions = [
-    'Time',
-    { name: 'ָIndicator', displayName: '指标', type: 'float' },
-  ]
-  data.dimensions = dimensions
-  monitorData.value = data
-  console.log(monitorData)
-})
+import { monitorData } from '~/composables/chartData'
 
 const option = computed<EChartsOption>(() => {
   if (!monitorData.value || !monitorData.value.length)

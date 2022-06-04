@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div />
+  <power-chart />
 </template>
 
 <style lang="scss" scoped>

@@ -7,7 +7,8 @@ import './styles/main.css'
 import 'uno.css'
 import ECharts from 'vue-echarts'
 import { use } from 'echarts/core'
-
+import * as echarts from 'echarts'
+import { transform } from 'echarts-stat'
 // import ECharts modules manually to reduce bundle size
 import {
   CanvasRenderer,
@@ -15,6 +16,7 @@ import {
 import {
   BarChart,
   LineChart,
+  ScatterChart,
 } from 'echarts/charts'
 import {
   DataZoomComponent,
@@ -32,9 +34,12 @@ import {
 } from 'echarts/components'
 import App from './App.vue'
 
+console.log('😀', transform)
+echarts.registerTransform(transform.regression)
 use([
   CanvasRenderer,
   BarChart,
+  ScatterChart,
   GridComponent,
   TooltipComponent,
   LineChart,
@@ -48,9 +53,11 @@ use([
   VisualMapPiecewiseComponent,
   VisualMapContinuousComponent,
   MarkLineComponent,
+
 ])
 
 const app = createApp(App)
+
 app.component('VChart', ECharts)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
