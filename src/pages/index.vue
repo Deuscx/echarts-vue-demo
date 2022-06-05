@@ -38,42 +38,26 @@ d3.csv('./SCADA_data.csv', (d: any) => {
 </script>
 
 <template>
-  <!-- <n-collapse :default-expanded-names="['1', '2', '3', '4']">
-    <n-collapse-item
-      title="风机特征"
-      name="1"
+  <div>
+    <n-carousel
+      show-arrow
+      autoplay
+      dot-placement="left"
+      class="  flex
+    justify-center"
     >
-      <line-chart
-        v-if="scandata"
-        :data="scandata"
-      />
-    </n-collapse-item>
-    <n-collapse-item
-      title="风机特征"
-      name="2"
-    >
-      <dynamic-line-chart
-        v-if="scandata"
-        :data="scandata"
-      />
-    </n-collapse-item>
-    <n-collapse-item
-      title="监控图"
-      name="3"
-    >
-      <monitor-chart />
-    </n-collapse-item>
-    <n-collapse-item
-      title="动态指标图"
-      name="4"
-    >
-      <dynamic-monitor-chart />
-    </n-collapse-item>
-  </n-collapse> -->
+      <img
+        v-for="index in 3"
+        :key="index"
+        class="w100% h80vh img"
+        :src="`${index}.jpg`"
+      >
+    </n-carousel>
+  </div>
 </template>
 
-<route>
-{
-  "redirect": "/warn"
+<style scoped>
+img {
+  background-size: cover;
 }
-</route>
+</style>

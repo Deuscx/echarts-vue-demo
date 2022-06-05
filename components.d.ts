@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     LineChart: typeof import('./src/components/LineChart.vue')['default']
     MonitorChart: typeof import('./src/components/MonitorChart.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
+    NCarousel: typeof import('naive-ui')['NCarousel']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
     NLayout: typeof import('naive-ui')['NLayout']
