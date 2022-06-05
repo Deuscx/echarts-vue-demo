@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { powerWindData } from '~/composables/chartData'
 
-const startIndex = ref(500)
+const startIndex = ref(10000)
 const speed = ref(1)
 const interval = computed(() => 2000 / speed.value)
 const totalLen = computed(() => {
@@ -11,7 +11,8 @@ const totalLen = computed(() => {
 })
 const source = computed(() => {
   if (powerWindData.value)
-    return powerWindData.value
+    return powerWindData.value.slice(0, startIndex.value)
+  // return powerWindData.value
   else return []
 })
 const option = computed<EChartsOption>(() => {
@@ -56,9 +57,9 @@ const option = computed<EChartsOption>(() => {
     ],
   }
 })
-
+const diff = ref(200)
 useIntervalFn(() => {
-  startIndex.value += 10
+  startIndex.value += diff.value
 }, interval)
 
 function changeTime(e) {
@@ -68,7 +69,7 @@ function changeTime(e) {
 
 <template>
   <section>
-    <div
+    <!-- <div
       flex
       items-center
       mb-1rem
@@ -81,7 +82,8 @@ function changeTime(e) {
       <div w10vw>
         {{ powerWindData && powerWindData[startIndex] && powerWindData[startIndex].Time }}
       </div>
-    </div>
+    </div> -->
+
     <div
       flex
       items-center
@@ -94,6 +96,8 @@ function changeTime(e) {
         max="4"
         clearable
       />
+      <label w5vw>增量</label>
+      <n-input-number v-model:value="diff" />
     </div>
   </section>
   <v-chart

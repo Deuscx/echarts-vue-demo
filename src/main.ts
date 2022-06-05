@@ -34,7 +34,6 @@ import {
 } from 'echarts/components'
 import App from './App.vue'
 
-console.log('😀', transform)
 echarts.registerTransform(transform.regression)
 use([
   CanvasRenderer,
