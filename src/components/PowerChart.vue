@@ -21,6 +21,7 @@ const option = computed<EChartsOption>(() => {
     //   endValue: 30,
     // },
     tooltip: {},
+    // animationDuration: 1000 * 60 * 10,
     dataset: [
       {
         source: powerWindData.value,
@@ -29,7 +30,10 @@ const option = computed<EChartsOption>(() => {
       {
         transform: {
           type: 'ecStat:regression',
-          // config: { method: 'polynomial', order: 3 },
+          config: {
+            method: 'linear',
+          },
+          print: true,
         },
       },
     ],

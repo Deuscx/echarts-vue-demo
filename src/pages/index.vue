@@ -71,3 +71,9 @@ d3.csv('./SCADA_data.csv', (d: any) => {
     </n-collapse-item>
   </n-collapse> -->
 </template>
+
+<route>
+{
+  "redirect": "/warn"
+}
+</route>

@@ -2,9 +2,8 @@ import * as d3 from 'd3'
 import type { DSVParsedArray } from 'd3'
 
 export const scandata = ref<DSVParsedArray>({ columns: 0, length: 0 })
-export const powerWindData = ref([])
+export const rawPowerWindData = ref([])
 d3.csv('/SCADA_data.csv', (d: any) => {
-  // console.log('🚀d', d)
   // 重新命名csv的列名
   const {
     Time,
@@ -13,7 +12,7 @@ d3.csv('/SCADA_data.csv', (d: any) => {
     'WEC: ava. Power': avaPower,
     'CS101 : Rotor temp. 1': rotorTemp,
   } = d
-  powerWindData.value.push([avaWindspeed, avaPower])
+  rawPowerWindData.value.push([avaWindspeed, avaPower])
   return {
     avaWindspeed,
     avaRotation,
@@ -33,6 +32,7 @@ d3.csv('/SCADA_data.csv', (d: any) => {
   scandata.value = data
 })
 
+export const powerWindData = computed(() => rawPowerWindData.value.sort(([windspeed1, power1], [windspeed2, power2]) => windspeed1 - windspeed2))
 // 监控数据
 export const monitorData = ref<DSVParsedArray>({ columns: 0, length: 0 })
 d3.csv('/monitor.csv').then((data) => {
